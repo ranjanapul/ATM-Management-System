@@ -11,7 +11,41 @@ class Account:
         self.accountHolderName = None
         self.pin = "qwertyuiop"
         
-    
+    def deposit(self,amount):
+        self.balance+=amount
+        self.saveToDatabase()
+        print("Deposit Successful")
+
+
+    def saveToDatabase(self):
+        accountDetails = {
+            "accountId": self.accountId,
+            "balance": self.balance,
+            "accountHolderName": self.accountHolderName,
+            "pin": self.pin
+        }
+        tinyDBObject = TinyDB('db-account.json')
+        q=Query()
+        tinyDBObject.update(accountDetails,q.accountId==self.accountId)
+        
+        
+
+
+
+    def withdraw(self,amount):
+        
+        if(amount<=self.balance):
+            self.balance-=amount
+            self.saveToDatabase()
+            print("Withdrawl Successful")
+        else:
+            print("Not enough balance")
+
+        
+    def showBalance(self):
+        print("Your Account balance is:")
+        print(self.balance)
+
     def fileNewAccount(self):
         searchResult = self.searchAccountId(self.accountId)
         print("searchResult", searchResult)
@@ -38,7 +72,7 @@ class Account:
             self.accountHolderName = accountData["accountHolderName"]
             self.pin = accountData["pin"]
         
-        print("Resgistration process complete.")
+        print("Registration process complete.")
 
     def searchAccountId(self, accountId):
         tinyDBObject = TinyDB('db-account.json')
@@ -46,4 +80,4 @@ class Account:
         q = Query()
         result = tinyDBObject.search(q.accountId == accountId)
         return result
-    
+
