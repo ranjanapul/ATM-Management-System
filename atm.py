@@ -3,36 +3,6 @@ from account import Account
 class Atm:
 
     
-        
-    def driver(self):
-        flag=0
-        while(flag==0):
-            #id number verification
-            acountInUse = None
-            while True:
-                accountTemp = Account()
-                inputAccountNumber=input("enter account id")
-                
-
-                searchResult = accountTemp.searchAccountId(inputAccountNumber)
-
-                if len(searchResult):
-                    print(searchResult)
-                    
-
-                    pin=input("enter account pin")
-                    
-                    if pin == searchResult[0]['pin']:
-                        acountInUse = accountTemp
-                    else:
-                        print("Bad Pin")
-                        continue
-
-                else:
-                    print("Not Found")
-                    continue
-#press 2 to get account balance
-#press 4 to exit transactions(remove card). Atm ni band krdena!Iss file se ho jayega.
 
     def authorization(self):
         while True:
@@ -78,6 +48,9 @@ class Atm:
         
     def printAtmMenu():
         #Print Menu
+        print("======WELCOME TO BITS ATM======")
+        print("Select your transaction.\n Press 1 for deposit.\n Press 2 for withdrawl.\n Press 3 for viewing balance.")
+        
 
 
 
@@ -85,3 +58,5 @@ atm = Atm()
 atm.authorization()
 #figure out requirements.txt and add it to your repo
 #commit all files except .json to github
+#learn about gitIgnore file(to ignore __pycache__)
+
