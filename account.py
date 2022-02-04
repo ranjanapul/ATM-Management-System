@@ -9,7 +9,7 @@ class Account:
         self.accountId = None
         self.balance = 0
         self.accountHolderName = None
-        self.pin = "qwertyuiop"
+        
         
     def deposit(self,amount):
         self.balance+=amount
@@ -22,7 +22,7 @@ class Account:
             "accountId": self.accountId,
             "balance": self.balance,
             "accountHolderName": self.accountHolderName,
-            "pin": self.pin
+            
         }
         tinyDBObject = TinyDB('db-account.json')
         q=Query()
@@ -54,8 +54,7 @@ class Account:
             accountDetails = {
                 "accountId": self.accountId,
                 "balance": self.balance,
-                "accountHolderName": self.accountHolderName,
-                "pin": self.pin
+                "accountHolderName": self.accountHolderName
             }
             tinyDBObject = TinyDB('db-account.json')
             tinyDBObject.insert(accountDetails)
@@ -70,7 +69,6 @@ class Account:
             self.accountId = accountData["accountId"]
             self.balance = accountData["balance"]
             self.accountHolderName = accountData["accountHolderName"]
-            self.pin = accountData["pin"]
         
         print("Registration process complete.")
 
