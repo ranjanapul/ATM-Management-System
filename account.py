@@ -52,7 +52,7 @@ class Account:
             tinyDBObject.insert(accountDetails)
             print("Account Created", self.accountId)
         else:
-            print("Account Found => balance", self.accountHolderName)
+            print("Account Found => Id", self.accountId)
             accountData = searchResult[0]
 
             # Ideally we would thorw an error but for sake

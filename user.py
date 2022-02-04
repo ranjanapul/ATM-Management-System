@@ -39,6 +39,14 @@ class User:
         return result
 
     def searchCardNumber(self, cardNumber):
+        """[summary]
+
+        Args:
+            cardNumber ([type]): [description]
+
+        Returns:
+            [type]: [description]
+        """
         tinyDBObject = TinyDB('db-user.json')
         q = Query()
         result = tinyDBObject.search(q.cardNumber == cardNumber)

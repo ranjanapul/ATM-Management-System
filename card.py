@@ -39,10 +39,20 @@ class Card:
 
     def setNewPin(self):
         newPin = int(input('Welcome, Set a pin '))
-        self.savePinToDatabase(newPin)
+        self.pin = newPin
+        self.savePinToDatabase()
 
     def savePinToDatabase(self):
-        pass
+        cardDetails = {
+            'pin': self.pin,
+            'cardNumber': self.cardNumber,
+            'bankName': self.bankName,
+            'cvv': self.cvv,
+            'expiryDate': self.expiryDate
+        }
+        tinyDBObject = TinyDB('db-card.json')
+        q = Query()
+        tinyDBObject.update(cardDetails, q.cardNumber == self.cardNumber)
 
     def authenticateCardPin(self):
         inputCardNumber = int(input("enter card number "))
@@ -56,6 +66,8 @@ class Card:
             self.bankName = result[0]['bankName']
             self.cvv = result[0]['cvv']
             self.expiryDate = result[0]['expiryDate']
+        if self.pin is None:
+            self.setNewPin()
         count = 0
         while(count < 3):
             print("Enter account pin ")
