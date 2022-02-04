@@ -1,10 +1,11 @@
-# Creates 4 users and stores them to the database
+# Creates 4 accounts, users and cards and stores them to the database
 from account import Account
 from card import Card
 from user import User
+# Creating objects of Account class and initializing their attributes
 acc = Account()
 
-# Set New Values
+
 acc.accountId = "acc1"
 acc.balance = 1000
 acc.accountHolderName = "Ram"
@@ -40,7 +41,7 @@ acc4.accountHolderName = "Shyamsingh"
 
 # Request New Registration
 acc4.fileNewAccount()
-# Creaating objects of card class
+# Creaating objects of Card class and initializing their attributes
 
 # Creating card 1
 c1 = Card()
@@ -81,26 +82,9 @@ c4.expiryDate = '04/24'
 c4.fileNewCard()
 
 
-# Creating card 5
-c5 = Card()
-c5.pin = None
-c5.cardNumber = 45359
-c5.bankName = 'BITS bank'
-c5.cvv = 759
-c5.expiryDate = '07/24'
-c5.fileNewCard()
-
-# Creating objects of user class
-'''
-self.name=None
-        self.dateOfBirth=None
-        self.mobileNumber=None
-        self.account=None
-        self.card=None
-        self.userId=None
+# Creating objects of User class and initializing their attributes
 
 
-'''
 u1 = User()
 u1.account = acc
 u1.card = c1
@@ -109,3 +93,30 @@ u1.dateOfBirth = '12/12/1996'
 u1.userId = '21435'
 u1.mobileNumber = '6798567576'
 u1.fileNewUser()
+
+u2 = User()
+u2.account = acc2
+u2.card = c2
+u2.name = 'Shyam'
+u2.dateOfBirth = '1/11/1994'
+u2.userId = '34743'
+u2.mobileNumber = '9846675454'
+u2.fileNewUser()
+
+u3 = User()
+u3.account = acc3
+u3.card = c3
+u3.name = 'Raj'
+u3.dateOfBirth = '23/07/2000'
+u3.userId = '79858'
+u3.mobileNumber = '7545867576'
+u3.fileNewUser()
+
+u4 = User()
+u4.account = acc4
+u4.card = c4
+u4.name = 'Neha'
+u4.dateOfBirth = '16/09/1998'
+u4.userId = '57734'
+u4.mobileNumber = '6980658794'
+u4.fileNewUser()

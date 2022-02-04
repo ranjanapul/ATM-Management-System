@@ -4,9 +4,6 @@ from tinydb import TinyDB, Query
 class Account:
 
     def __init__(self):
-
-        print("Construct New Object")
-
         self.accountId = None
         self.balance = 0
         self.accountHolderName = None
@@ -56,7 +53,7 @@ class Account:
             accountData = searchResult[0]
 
             # Ideally we would thorw an error but for sake
-            # of simplicity we move one with correct data
+            # of simplicity we move on with correct data
             self.accountId = accountData["accountId"]
             self.balance = accountData["balance"]
             self.accountHolderName = accountData["accountHolderName"]
