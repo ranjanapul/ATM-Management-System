@@ -1,5 +1,6 @@
 from tinydb import TinyDB, Query
 
+
 class Account:
 
     def __init__(self):
@@ -9,39 +10,30 @@ class Account:
         self.accountId = None
         self.balance = 0
         self.accountHolderName = None
-        
-        
-    def deposit(self,amount):
-        self.balance+=amount
+
+    def deposit(self, amount):
+        self.balance += amount
         self.saveToDatabase()
         print("Deposit Successful")
-
 
     def saveToDatabase(self):
         accountDetails = {
             "accountId": self.accountId,
             "balance": self.balance,
             "accountHolderName": self.accountHolderName,
-            
         }
         tinyDBObject = TinyDB('db-account.json')
-        q=Query()
-        tinyDBObject.update(accountDetails,q.accountId==self.accountId)
-        
-        
+        q = Query()
+        tinyDBObject.update(accountDetails, q.accountId == self.accountId)
 
-
-
-    def withdraw(self,amount):
-        
-        if(amount<=self.balance):
-            self.balance-=amount
+    def withdraw(self, amount):
+        if(amount <= self.balance):
+            self.balance -= amount
             self.saveToDatabase()
             print("Withdrawl Successful")
         else:
             print("Not enough balance")
 
-        
     def showBalance(self):
         print("Your Account balance is:")
         print(self.balance)
@@ -59,17 +51,15 @@ class Account:
             tinyDBObject = TinyDB('db-account.json')
             tinyDBObject.insert(accountDetails)
             print("Account Created", self.accountId)
-    
         else:
             print("Account Found => balance", self.accountHolderName)
             accountData = searchResult[0]
 
-            # Ideally we would thorw an error but for sake 
+            # Ideally we would thorw an error but for sake
             # of simplicity we move one with correct data
             self.accountId = accountData["accountId"]
             self.balance = accountData["balance"]
             self.accountHolderName = accountData["accountHolderName"]
-        
         print("Registration process complete.")
 
     def searchAccountId(self, accountId):
@@ -78,4 +68,3 @@ class Account:
         q = Query()
         result = tinyDBObject.search(q.accountId == accountId)
         return result
-
